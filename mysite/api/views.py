@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
 
-from models import BlogPost
-from serializers import BlogPostSerializer
+from .models import BlogPost
+from .serializers import BlogPostSerializer
 
 
 class BlogListCreate(generics.ListCreateAPIView):
@@ -10,3 +10,7 @@ class BlogListCreate(generics.ListCreateAPIView):
     serializer_class = BlogPostSerializer
 
 
+class BlogPostRetrieveUpdateDestroy(generics.RetrieveDestroyAPIView):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostSerializer
+    lookup_field = "pk"
